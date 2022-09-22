@@ -10,6 +10,9 @@ public class DoublyLinkedList {
         this.totalStudentCount = totalStudentCount;
     }
 
+    public DoublyLinkedList() {
+    }
+
     public Course getPrevCourse() {
         return prevCourse;
     }
@@ -56,22 +59,54 @@ public class DoublyLinkedList {
 
     public void printCourseList() {
         Course course = head;
+        System.out.println("The list of courses registered are as follows:");
         while (course.getNextCourse() != null) {
-            System.out.println(course.getCourseName());
+            System.out.println(String.format("Course Number: %s", course.getCourseName()));
+            System.out.println(String.format("Course Name: %s", course.getCourseNumber()));
+            System.out.println(String.format("Number of students enrolled: %d", course.getStudentCount()));
+            System.out.println();
+            System.out.println();
             course = course.getNextCourse();
         }
 
     }
 
-    public Course get(String courseNumber) {
+    public Course getByCourseNumber(String courseNumber) {
         Course course = head;
         while (course.getNextCourse() != null) {
-            if (course.getCourseNumber() == courseNumber) {
+            if (course.getCourseNumber().equals(courseNumber)) {
                 return course;
             }
             course = course.getNextCourse();
         }
+        if (course.getCourseNumber().equals(courseNumber)) {
+            return course;
+        }
         return null;
     }
 
+    public boolean contains(Course toBeInserted) {
+        Course course = head;
+        while (course.getNextCourse() != null) {
+            if (course.getCourseName() == toBeInserted.getCourseName()) {
+                System.out.println(course.getCourseName() + " " + toBeInserted.getCourseName());
+                return true;
+            }
+            course = course.getNextCourse();
+        }
+        if (course.getCourseName() == toBeInserted.getCourseName()) {
+            return true;
+        }
+
+
+        return false;
+    }
+
+    public void printAll() {
+        Course course = head;
+        while (course.getNextCourse() != null) {
+            System.out.println(course.toString());
+            course = course.getNextCourse();
+        }
+    }
 }

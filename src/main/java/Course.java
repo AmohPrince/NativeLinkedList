@@ -52,4 +52,14 @@ public class Course {
         CourseName = courseName;
     }
 
+    @Override
+    public String toString() {
+        return "Course{" +
+                "previousCourse=" + previousCourse +
+                ", nextCourse=" + nextCourse +
+                ", CourseNumber='" + CourseNumber + '\'' +
+                ", CourseName='" + CourseName + '\'' +
+                ", studentCount=" + studentCount +
+                '}' + "\n";
+    }
 }

@@ -1,69 +1,66 @@
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
-        Engine engine = new Engine();
-        System.out.println("Welcome, Choose from the below menu by typing appropriate numbers");
-        System.out.print("1. Read the input data\n" +
-                "2. Delete a course\n" +
-                "3. Insert a new course\n" +
-                "4. Delete a student\n" +
-                "5. Insert a new student\n" +
-                "6. Transfer a student from one course to another\n" +
-                "7. Display the course list\n" +
-                "8. Display the student list\n" +
-                "9. Exit");
-        Scanner scanner = new Scanner(System.in);
-        int choice = scanner.nextInt();
-        switch (choice) {
-            case 1:
-                engine.printInputData();
-            case 2:
-                System.out.println("Enter the course number to delete:");
-                String courseNumber = scanner.next();
-                System.out.println(courseNumber);
-                engine.deleteCourse(courseNumber);
-                engine.printInputData();
-            case 3:
-                System.out.println("Enter the new course number to add:");
-                String newCourseNumber = scanner.next();
-                System.out.println("Enter the new course name for CS4323:");
-                String newCourseName = scanner.next();
-                engine.insertNewCourse(newCourseNumber, newCourseName);
-                engine.printInputData();
-            case 4:
-                System.out.println("Enter the student ID number to delete:");
-                String deletingId = scanner.next();
-                System.out.println("Enter the course number from which the student is to be dropped from:");
-                String deletingCourseName = scanner.next();
-                engine.deleteStudent(deletingId, deletingCourseName);
-                engine.printInputData();
-            case 5:
-                System.out.println("Enter the course number the student wants to enroll to:");
-                String courseNumberToEnrollTo = scanner.next();
-                System.out.println("Enter the student’s name:");
-                String studentName = scanner.next();
-                System.out.println("Enter the student’s ID:");
-                String studentId = scanner.next();
-                System.out.println("Enter the student’s emergency contact address:");
-                String studentEmergencyContact = scanner.next();
-                engine.createNewStudent(courseNumberToEnrollTo, studentName, studentId, studentEmergencyContact);
-                engine.printInputData();
-            case 6:
-                System.out.println("Enter the student’s name:");
-                String studentNameToChangeCourse = scanner.next();
-                System.out.println("Enter the course number the student wants to drop from:");
-                String courseNumberToDropFrom = scanner.next();
-                System.out.println("Enter the course number the student wants to enroll to:");
-                String courseNumberToEnrolTo = scanner.next();
-                engine.changeStudentCourse(studentNameToChangeCourse, courseNumberToDropFrom, courseNumberToEnrolTo);
+    static boolean exit = false;
 
-            case 7:
-                engine.displayCourseList();
-            case 8:
-                engine.displayStudentList();
-            case 9:
-                System.exit(2);
+    public static void main(String[] args) {
+        run();
+    }
+
+    static void run() {
+        Engine engine = new Engine();
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Welcome, Choose from the below menu by typing appropriate numbers");
+        engine.showMenu();
+        int choice = scanner.nextInt();
+        if (choice == 1) {
+            engine.printInputData();
+        } else if (choice == 2) {
+            engine.deleteCourse();
+            engine.printInputData();
+        } else if (choice == 3) {
+            engine.insertNewCourse();
+            engine.printInputData();
+        } else if (choice == 4) {
+            engine.deleteStudent();
+            engine.printInputData();
+        } else if (choice == 5) {
+            engine.createNewStudent();
+            engine.printInputData();
+        } else if (choice == 6) {
+            engine.changeStudentCourse();
+        } else if (choice == 7) {
+            engine.displayCourseList();
+        } else if (choice == 8) {
+            engine.displayStudentList();
+        } else if (choice == 9) {
+            System.exit(2);
         }
     }
+
+
+//    public static void main(String[] args) {
+//        SinglyLinkedList singlyLinkedList = new SinglyLinkedList();
+//        singlyLinkedList.insert(new Student("Flo", "1234", "amoscbkyuac", "web3", new Course("2", "Physics", 10)));
+//        singlyLinkedList.insert(new Student("Deathrow", "1264", "jdcyikfkvyu", "web973", new Course("1", "Physics", 10)));
+//        singlyLinkedList.insert(new Student("FloBitch", "1254", "amosfagvubkyuac", "web93", new Course("2", "Fred", 2)));
+//        singlyLinkedList.displayAsList("1");
+
+//        System.out.println(singlyLinkedList.size());
+//        singlyLinkedList.printAll();
+//        System.out.println(singlyLinkedList.get("1254"));
+//        Engine engine = new Engine();
+//        engine.debug();
+//        engine.displayStudentList();
+
+//        DoublyLinkedList doublyLinkedList = new DoublyLinkedList();
+//        doublyLinkedList.insertCourse(new Course("CS�4883", "Death", 20));
+//        doublyLinkedList.insertCourse(new Course("2", "Row", 10));
+//        doublyLinkedList.insertCourse(new Course("3", "Bitch", 40));
+//
+//        System.out.println(doublyLinkedList.get("3").getCourseName());
+//        System.out.println(doublyLinkedList.contains(new Course("CS 4883", "Bitch", 40)));
+//    }
+
+
 }

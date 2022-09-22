@@ -1,5 +1,6 @@
 public class Student {
     private Student next;
+    private Student prev;
     private String name;
     private String id;
     private String email;
@@ -12,6 +13,14 @@ public class Student {
         this.email = email;
         this.address = address;
         this.course = course;
+    }
+
+    public Student getPrev() {
+        return prev;
+    }
+
+    public void setPrev(Student prev) {
+        this.prev = prev;
     }
 
     public Course getCourse() {
