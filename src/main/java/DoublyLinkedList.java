@@ -62,4 +62,16 @@ public class DoublyLinkedList {
         }
 
     }
+
+    public Course get(String courseNumber) {
+        Course course = head;
+        while (course.getNextCourse() != null) {
+            if (course.getCourseNumber() == courseNumber) {
+                return course;
+            }
+            course = course.getNextCourse();
+        }
+        return null;
+    }
+
 }

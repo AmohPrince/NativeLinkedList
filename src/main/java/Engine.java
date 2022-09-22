@@ -14,6 +14,16 @@ public class Engine {
     List<String> emails = new ArrayList<>();
     List<String> addresses = new ArrayList<>();
     List<Student> studentList = new ArrayList<>();
+    DoublyLinkedList doublyLinkedList = new DoublyLinkedList(courseNames.size(), studentNames.size());
+    SinglyLinkedList singlyLinkedList = new SinglyLinkedList();
+
+    public Engine() {
+        try {
+            begin();
+        } catch (IOException ioException) {
+            ioException.getLocalizedMessage();
+        }
+    }
 
     static void printInputData() {
         System.out.println("Input file is read successfully..");
@@ -21,6 +31,7 @@ public class Engine {
         System.out.println(String.format("Number of courses registered: %d", numberOfCourses));
         System.out.println(String.format("Number of total students: %d", totalStudents));
     }
+
 
     void begin() throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new FileReader("inputFile.txt"));
@@ -36,24 +47,24 @@ public class Engine {
             addresses.add(values[6]);
         }
 
-        System.out.println(courseNumbers);
-        System.out.println(courseNames);
-
         numberOfCourses = (int) courseNumbers.stream().distinct().count();
         totalStudents = (int) studentIds.stream().count();
 
-        SinglyLinkedList singlyLinkedList = new SinglyLinkedList();
         for (int i = 0; i < studentNames.size(); i++) {
             Student student = new Student(studentNames.get(i), studentIds.get(i), emails.get(i), addresses.get(i), new Course(courseNumbers.get(i), courseNames.get(i), getStudentCount(courseNames.get(i))));
             singlyLinkedList.insert(student);
             studentList.add(student);
         }
 
-        DoublyLinkedList doublyLinkedList = new DoublyLinkedList(courseNames.size(), studentNames.size());
         for (int i = 0; i < courseNames.size(); i++) {
             doublyLinkedList.insertCourse(new Course(courseNames.get(i), courseNames.get(i), getStudentCount(courseNames.get(i))));
         }
 
+    }
+
+    private void refreshValues() {
+        numberOfCourses = (int) courseNumbers.stream().distinct().count();
+        totalStudents = (int) studentIds.stream().count();
     }
 
     private int getStudentCount(String courseName) {
@@ -74,4 +85,62 @@ public class Engine {
     }
 
 
+    public void deleteCourse(String courseNumber) {
+        //TODO Complete
+        var toBeDeleted = doublyLinkedList.get(courseNumber);
+        if (toBeDeleted == null) {
+            System.out.println("You are trying an un-inserted element");
+        } else {
+            doublyLinkedList.deleteCourse(toBeDeleted);
+            courseNumbers.remove(toBeDeleted.getCourseNumber());
+            refreshValues();
+        }
+    }
+
+    public void insertNewCourse(String newCourseNumber, String newCourseName) {
+        //TODO Complete
+        Course newCourse = new Course(newCourseNumber, newCourseName, 0);
+        doublyLinkedList.insertCourse(newCourse);
+        courseNumbers.add(newCourse.getCourseNumber());
+        refreshValues();
+    }
+
+    public void deleteStudent(String deletingId, String deletingCourseName) {
+        //TODO Complete
+        Student toBeDeleted = singlyLinkedList.get(deletingId);
+        singlyLinkedList.deleteStudent(toBeDeleted);
+        studentIds.remove(toBeDeleted.getId());
+        refreshValues();
+    }
+
+    public void createNewStudent(String courseNumberToEnrollTo, String studentName, String studentId, String studentEmergencyContact) {
+        //TODO Complete
+        Course targetCourse = doublyLinkedList.get(courseNumberToEnrollTo);
+        Student toBeInserted;
+        if (targetCourse == null) {
+            toBeInserted = new Student(studentName, studentId, null, studentEmergencyContact, new Course(courseNumberToEnrollTo, null, 0));
+        } else {
+            toBeInserted = new Student(studentName, studentId, null, studentEmergencyContact, targetCourse);
+            studentIds.add(toBeInserted.getId());
+            refreshValues();
+        }
+        singlyLinkedList.insert(toBeInserted);
+    }
+
+    public void changeStudentCourse(String studentNameToChangeCourse, String courseNumberToDropFrom, String courseNumberToEnrolTo) {
+        //TODO Complete
+        var courseToChangeTo = doublyLinkedList.get(courseNumberToEnrolTo);
+        var studentToChangeCourse = singlyLinkedList.get(studentNameToChangeCourse);
+        singlyLinkedList.transferStudent(courseToChangeTo, studentToChangeCourse);
+    }
+
+    public void displayCourseList() {
+        //TODO Complete
+        doublyLinkedList.printCourseList();
+    }
+
+    public void displayStudentList() {
+        //TODO Complete
+        singlyLinkedList.displayAsList();
+    }
 }

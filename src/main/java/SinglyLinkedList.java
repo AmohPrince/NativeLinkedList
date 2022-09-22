@@ -18,11 +18,7 @@ public class SinglyLinkedList {
 
     public void deleteStudent(Student student) {
         //assuming it's the first element;
-        if (student == head) {
-
-        }
-        Student temp = head.getNext();
-        head.setNext(temp);
+       
     }
 
     public void transferStudent(Course newCourse, Student student) {
@@ -35,5 +31,16 @@ public class SinglyLinkedList {
             System.out.println(student.getName());
             student = student.getNext();
         }
+    }
+
+    public Student get(String studentId) {
+        Student student = head;
+        while (student.getNext() != null) {
+            if (student.getId() == studentId) {
+                return student;
+            }
+            student = student.getNext();
+        }
+        return null;
     }
 }
