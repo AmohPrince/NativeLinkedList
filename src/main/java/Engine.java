@@ -15,8 +15,9 @@ public class Engine {
     List<String> emails = new ArrayList<>();
     List<String> addresses = new ArrayList<>();
     List<Student> studentList = new ArrayList<>();
-    DoublyLinkedList doublyLinkedList = new DoublyLinkedList(courseNames.size(), studentNames.size());
+    DoublyLinkedList doublyLinkedList = new DoublyLinkedList();
     SinglyLinkedList singlyLinkedList = new SinglyLinkedList();
+
 
     public Engine() {
         try {
@@ -51,18 +52,18 @@ public class Engine {
         numberOfCourses = (int) courseNumbers.stream().distinct().count();
         totalStudents = (int) studentIds.stream().count();
 
-        Course firstItem = new Course(courseNumbers.get(0), courseNames.get(0), getStudentCount(courseNames.get(0)));
-        doublyLinkedList.insertCourse(firstItem);
+        Course firstItem = new Course(courseNumbers.get(0), courseNames.get(0));
+        doublyLinkedList.add(firstItem);
         for (int i = 1; i < courseNames.size(); i++) {
-            Course toBeInserted = new Course(courseNumbers.get(i), courseNames.get(i), getStudentCount(courseNames.get(i)));
+            Course toBeInserted = new Course(courseNumbers.get(i), courseNames.get(i));
             if (!doublyLinkedList.contains(toBeInserted)) {
-                doublyLinkedList.insertCourse(toBeInserted);
+                doublyLinkedList.add(toBeInserted);
             }
         }
 
         for (int i = 0; i < studentNames.size(); i++) {
             Student student = new Student(studentNames.get(i), studentIds.get(i), emails.get(i), addresses.get(i), doublyLinkedList.getByCourseNumber(courseNumbers.get(i)));
-            singlyLinkedList.insert(student);
+            singlyLinkedList.add(student);
             studentList.add(student);
         }
 
@@ -113,7 +114,7 @@ public class Engine {
         if (toBeDeleted == null) {
             System.out.println("You are trying to remove an un-inserted element");
         } else {
-            doublyLinkedList.deleteCourse(toBeDeleted);
+            doublyLinkedList.remove(toBeDeleted.getCourseNumber());
             courseNumbers.remove(toBeDeleted.getCourseNumber());
             refreshValues();
         }
@@ -126,8 +127,8 @@ public class Engine {
         System.out.println(String.format("Enter the new course name for %s:", newCourseNumber));
         String newCourseName = scanner.next();
         scanner.close();
-        Course newCourse = new Course(newCourseNumber, newCourseName, 0);
-        doublyLinkedList.insertCourse(newCourse);
+        Course newCourse = new Course(newCourseNumber, newCourseName);
+        doublyLinkedList.add(newCourse);
         courseNumbers.add(newCourse.getCourseNumber());
         refreshValues();
     }
@@ -143,7 +144,7 @@ public class Engine {
         if (toBeDeleted == null) {
             System.out.println("Student not found");
         } else {
-            singlyLinkedList.deleteStudent(toBeDeleted);
+            singlyLinkedList.remove(toBeDeleted.getId());
             studentIds.remove(toBeDeleted.getId());
         }
         refreshValues();
@@ -163,13 +164,13 @@ public class Engine {
         Course targetCourse = doublyLinkedList.getByCourseNumber(courseNumberToEnrollTo);
         Student toBeInserted;
         if (targetCourse == null) {
-            toBeInserted = new Student(studentName, studentId, null, studentEmergencyContact, new Course(courseNumberToEnrollTo, null, 0));
+            toBeInserted = new Student(studentName, studentId, null, studentEmergencyContact, new Course(courseNumberToEnrollTo, null));
         } else {
             toBeInserted = new Student(studentName, studentId, null, studentEmergencyContact, targetCourse);
             studentIds.add(toBeInserted.getId());
             refreshValues();
         }
-        singlyLinkedList.insert(toBeInserted);
+        singlyLinkedList.add(toBeInserted);
     }
 
     public void changeStudentCourse() {
@@ -203,7 +204,7 @@ public class Engine {
     }
 
     public void debug() {
-//        singlyLinkedList.printAll();
+        singlyLinkedList.printAll();
         doublyLinkedList.printAll();
     }
 }

@@ -4,14 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6dd8f4b8-2cd0-4423-9e8a-afc9bf16bb80" name="Changes" comment="Almost there">
+    <list default="true" id="6dd8f4b8-2cd0-4423-9e8a-afc9bf16bb80" name="Changes" comment="Final">
+      <change afterPath="$PROJECT_DIR$/src/main/java/DoublyLinkedListInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/LinkedList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/SinglyLinkedListInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/DoublyLinkedListTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/SinglyLinkedListTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Course.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/DoublyLinkedList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DoublyLinkedList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Engine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/SinglyLinkedList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SinglyLinkedList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Student.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,8 +26,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -46,22 +52,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "rearrange.code.on.save": "true",
-    "settings.editor.selected.configurable": "settings.saveactions"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/HP/Projects/NativeLinkedList&quot;,
+    &quot;rearrange.code.on.save&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.saveactions&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\HP\Projects\NativeLinkedList" />
     </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="" />
+    </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="NativeLinkedList" />
@@ -69,9 +84,53 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="SinglyLinkedListTest.add" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="NativeLinkedList" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="SinglyLinkedListTest" />
+      <option name="METHOD_NAME" value="add" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SinglyLinkedListTest.getById" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="NativeLinkedList" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="SinglyLinkedListTest" />
+      <option name="METHOD_NAME" value="getById" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SinglyLinkedListTest.getByName" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="NativeLinkedList" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="SinglyLinkedListTest" />
+      <option name="METHOD_NAME" value="getByName" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SinglyLinkedListTest.remove" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="NativeLinkedList" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="SinglyLinkedListTest" />
+      <option name="METHOD_NAME" value="remove" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.SinglyLinkedListTest.remove" />
+        <item itemvalue="JUnit.SinglyLinkedListTest.add" />
+        <item itemvalue="JUnit.SinglyLinkedListTest.getById" />
+        <item itemvalue="JUnit.SinglyLinkedListTest.getByName" />
       </list>
     </recent_temporary>
   </component>
@@ -98,7 +157,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663859560437</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Final">
+      <created>1663877206451</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1663877206451</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -119,6 +185,7 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Checkpoint A" />
     <MESSAGE value="Almost there" />
-    <option name="LAST_COMMIT_MESSAGE" value="Almost there" />
+    <MESSAGE value="Final" />
+    <option name="LAST_COMMIT_MESSAGE" value="Final" />
   </component>
 </project>

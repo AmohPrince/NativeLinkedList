@@ -1,15 +1,28 @@
 public class Course {
+    private SinglyLinkedList studentList = new SinglyLinkedList();
     private Course previousCourse;
     private Course nextCourse;
     private String CourseNumber;
     private String CourseName;
+
     private int studentCount;
 
-
-    public Course(String courseNumber, String courseName, int studentCount) {
+    public Course(String courseNumber, String courseName) {
         CourseNumber = courseNumber;
         CourseName = courseName;
-        this.studentCount = studentCount;
+        this.studentCount = studentList.size();
+    }
+
+    public int getStudentCount() {
+        return studentCount;
+    }
+
+    public SinglyLinkedList getStudentList() {
+        return studentList;
+    }
+
+    public void setStudentList(SinglyLinkedList studentList) {
+        this.studentList = studentList;
     }
 
     public Course getPreviousCourse() {
@@ -26,14 +39,6 @@ public class Course {
 
     public void setNextCourse(Course nextCourse) {
         this.nextCourse = nextCourse;
-    }
-
-    public int getStudentCount() {
-        return studentCount;
-    }
-
-    public void setStudentCount(int studentCount) {
-        this.studentCount = studentCount;
     }
 
     public String getCourseNumber() {
@@ -59,7 +64,6 @@ public class Course {
                 ", nextCourse=" + nextCourse +
                 ", CourseNumber='" + CourseNumber + '\'' +
                 ", CourseName='" + CourseName + '\'' +
-                ", studentCount=" + studentCount +
                 '}' + "\n";
     }
 }

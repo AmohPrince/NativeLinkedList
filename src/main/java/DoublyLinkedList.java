@@ -1,17 +1,9 @@
-public class DoublyLinkedList {
+public class DoublyLinkedList implements DoublyLinkedListInterface {
     private Course head;
     private Course prevCourse;
     private Course nextCourse;
     private int courseCount;
     private int totalStudentCount;
-
-    public DoublyLinkedList(int courseCount, int totalStudentCount) {
-        this.courseCount = courseCount;
-        this.totalStudentCount = totalStudentCount;
-    }
-
-    public DoublyLinkedList() {
-    }
 
     public Course getPrevCourse() {
         return prevCourse;
@@ -29,9 +21,10 @@ public class DoublyLinkedList {
         this.nextCourse = nextCourse;
     }
 
-    public void deleteCourse(Course course) {
-        var previous = course.getPreviousCourse();
+    public boolean remove(String courseNumber) {
+        var course = getByCourseNumber(courseNumber);
         var next = course.getNextCourse();
+        var previous = course.getPreviousCourse();
 
         if (head == null) {
             System.out.println("List is empty");
@@ -42,9 +35,10 @@ public class DoublyLinkedList {
         } else if (previous != null && next == null) {//Suggesting its last
             previous.setNextCourse(null);
         }
+        return false;
     }
 
-    public void insertCourse(Course course) {
+    public boolean add(Course course) {
         if (head == null) {
             head = course;
         } else {
@@ -53,8 +47,10 @@ public class DoublyLinkedList {
                 next = next.getNextCourse();
             }
             next.setNextCourse(course);
+            return true;
         }
 
+        return false;
     }
 
     public void printCourseList() {
@@ -85,6 +81,21 @@ public class DoublyLinkedList {
         return null;
     }
 
+    @Override
+    public Course getByCourseName(String courseName) {
+        Course course = head;
+        while (course.getNextCourse() != null) {
+            if (course.getCourseName() == courseName) {
+                return course;
+            }
+            course = course.getNextCourse();
+        }
+        if (course.getCourseName() == courseName) {
+            return course;
+        }
+        return null;
+    }
+
     public boolean contains(Course toBeInserted) {
         Course course = head;
         while (course.getNextCourse() != null) {
@@ -108,5 +119,16 @@ public class DoublyLinkedList {
             System.out.println(course.toString());
             course = course.getNextCourse();
         }
+    }
+
+    @Override
+    public int size() {
+        int i = 0;
+        Course course = head;
+        while (course.getNextCourse() != null) {
+            i++;
+            course = course.getNextCourse();
+        }
+        return i + 1;
     }
 }

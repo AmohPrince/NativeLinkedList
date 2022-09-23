@@ -1,7 +1,7 @@
-public class SinglyLinkedList {
+public class SinglyLinkedList implements SinglyLinkedListInterface {
     Student head;
 
-    public void insert(Student student) {
+    public boolean add(Student student) {
         Student studentToTest = student;
 
         //If it's the first time inserting then head is null
@@ -14,13 +14,16 @@ public class SinglyLinkedList {
             }
             nextStudent.setNext(student);
         }
+
+        return true;
     }
 
-    public void deleteStudent(Student student) {
+    public boolean remove(String studentId) {
         //assuming it's the first element;
-        var prevStudent = student.getPrev();
-        var nextStudent = student.getNext();
+        var prevStudent = getById(studentId);
+        var nextStudent = prevStudent.getNext();
         prevStudent.setNext(nextStudent);
+        return false;
     }
 
     public void transferStudent(Course newCourse, Student student) {
@@ -44,34 +47,30 @@ public class SinglyLinkedList {
         Student student = head;
         while (student.getNext() != null) {
             if (student.getId() == studentId) {
-                System.out.println(student.getId() + " " + studentId);
                 return student;
             }
             student = student.getNext();
         }
         if (student.getId() == studentId) {
-            System.out.println(student.getId() + " " + studentId);
             return student;
         }
         return null;
     }
 
     public Student getByName(String studentName) {
-        System.out.println(studentName);
         Student student = head;
         while (student.getNext() != null) {
             if (student.getName() == studentName) {
-                System.out.println(student.getId() + " " + studentName);
                 return student;
             }
             student = student.getNext();
         }
         if (student.getName() == studentName) {
-            System.out.println(student.getId() + " " + studentName);
             return student;
         }
         return null;
     }
+
 
     public void printAll() {
         Student student = head;
@@ -84,6 +83,9 @@ public class SinglyLinkedList {
 
     public int size() {
         int i = 0;
+        if (head == null) {
+            return 0;
+        }
         Student student = head;
         while (student.getNext() != null) {
             i++;
@@ -91,4 +93,20 @@ public class SinglyLinkedList {
         }
         return i + 1;
     }
+
+    @Override
+    public boolean contains(Student student) {
+        Student test = head;
+        while (test.getNext() != null) {
+            if (test.getName() == student.getName()) {
+                return true;
+            }
+            test = test.getNext();
+        }
+        if (test.getName() == student.getName()) {
+            return true;
+        }
+        return false;
+    }
+
 }
